@@ -4,9 +4,48 @@ class Tree {
     this.children = [];
   }
 
-  addChild(value) {}
+  addChild(value) {
+    const newChild = new Tree(value);
+    this.children.push(newChild);
+    return newChild;
+  }
 
-  contains(value) {}
+  contains(value) {
+    let result = false;
+
+    function findValue(tree) {
+      // exit case
+      if (tree.value === value) {
+        result = true;
+        return;
+      }
+      if (tree.children === []) {
+        return;
+      }
+
+      //recursion case
+      tree.children.forEach((child) => {
+        findValue(child);
+      });
+    }
+
+    findValue(this);
+    return result;
+  }
+
+  remove(value) {
+    for (let i = 0; i < this.children.length; i++) {
+      if (this.children[i].value === value) {
+        if (this.children[i].children !== []) {
+          this.children[i].children.forEach((grandChild) => {
+            this.addChild(grandChild.value);
+          });
+        }
+        this.children.splice(i, 1);
+      }
+    }
+    return value;
+  }
 
   /*
 +-------------------------+
@@ -31,3 +70,5 @@ requirements for ALL data structures in this exercise.
 |X                               X
 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 */
+
+module.exports = Tree;

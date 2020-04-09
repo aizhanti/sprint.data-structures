@@ -5,7 +5,7 @@ const { isClass } = require("./utilities");
 const Tree = require("../src/Tree");
 
 let tree;
-describe("Trees", () => {
+describe.only("Trees", () => {
   beforeEach(() => {
     tree = new Tree(1);
   });
@@ -58,8 +58,35 @@ describe("Trees", () => {
       tree.addChild(3);
       tree.children[0].addChild(4);
       tree.children[1].addChild(5);
+      expect(tree.children[0].contains(4)).to.equal(true);
       expect(tree.contains(4)).to.equal(true);
       expect(tree.contains(5)).to.equal(true);
+    });
+  });
+
+  describe("The remove method", () => {
+    it("should exist on the Tree prototype", () => {
+      expect(Tree.prototype.contains).to.exist;
+    });
+
+    it("should return true if a value exists", () => {
+      tree.addChild(2);
+      expect(tree.contains(2)).to.equal(true);
+    });
+
+    it("should return false if a value does not exist", () => {
+      tree.addChild(2);
+      expect(tree.contains(3)).to.equal(false);
+    });
+
+    it("should correctly remove a value", () => {
+      tree.addChild(2);
+      tree.addChild(3);
+      tree.children[0].addChild(4);
+      tree.children[1].addChild(5);
+      tree.remove(3);
+      expect(tree.contains(3)).to.equal(false);
+      expect(tree.children[1].value).to.equal(5);
     });
   });
 

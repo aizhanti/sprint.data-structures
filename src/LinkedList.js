@@ -34,7 +34,17 @@ class LinkedList {
     return removeHead;
   }
 
-  findNode(value) {}
+  findNode(value) {
+    let current = this.head;
+    while (current !== this.tail) {
+      if (current.value === value) {
+        return current;
+      } else {
+        current = current.next;
+      }
+    }
+    return null;
+  }
 
   /*
 +-------------------------+

@@ -11,9 +11,28 @@ class LinkedList {
     }
   }
 
-  appendToTail(value) {}
+  appendToTail(value) {
+    const newNode = new Node(value);
 
-  removeHead() {}
+    if (this.head !== undefined) {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    } else {
+      this.head = newNode;
+      this.tail = this.head;
+      // newNode = new Node();
+      // newNode.value = undefined;
+    }
+
+    return newNode;
+  }
+
+  removeHead() {
+    const removeHead = this.head;
+    const nextHead = this.head.next;
+    this.head = nextHead;
+    return removeHead;
+  }
 
   findNode(value) {}
 

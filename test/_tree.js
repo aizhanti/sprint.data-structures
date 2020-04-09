@@ -5,7 +5,7 @@ const { isClass } = require("./utilities");
 const Tree = require("../src/Tree");
 
 let tree;
-describe.only("Trees", () => {
+describe("Trees", () => {
   beforeEach(() => {
     tree = new Tree(1);
   });
@@ -124,7 +124,7 @@ Uncomment by removing the 'x'.
     });
   });
 
-  xdescribe("The traverseBreadthFirst method", () => {
+  describe("The traverseBreadthFirst method", () => {
     it("should exist on the Tree prototype", () => {
       expect(Tree.prototype.traverseBreadthFirst).to.exist;
     });

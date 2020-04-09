@@ -60,7 +60,7 @@ describe("hashTable", () => {
     expect(hashTable.retrieve(v2)).to.equal(v2);
     simpleHash = oldHashFunction;
   });
-  
+
   /*
   +-------------------------+
   | Advanced Requirements!! |

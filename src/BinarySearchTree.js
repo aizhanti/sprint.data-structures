@@ -42,6 +42,39 @@ class BinarySearchTree {
     findElement(this);
     return result;
   }
+
+  traverseDepthFirstInOrder(callback) {
+    let obj = {};
+    function addNode(tree) {
+      if (!obj[tree.value]) {
+        callback(tree);
+        obj[tree.value] = 1;
+      }
+    }
+
+    function move(tree) {
+      if (tree.left && !tree.left.left && !tree.left.right) {
+        addNode(tree.left);
+        addNode(tree);
+      }
+      if (tree.left && (tree.left.left || tree.left.right)) {
+        move(tree.left);
+      }
+      if (tree.right && !tree.right.left && !tree.right.right) {
+        addNode(tree.right);
+        // addNode(tree);
+      }
+      addNode(tree);
+      if (tree.right && (tree.right.left || tree.right.right)) {
+        move(tree.right);
+      }
+      // if (!obj[tree.value]) {
+      //   addNode(tree);
+      //   move(tree.right);
+      // }
+    }
+    move(this);
+  }
 }
 
 module.exports = BinarySearchTree;

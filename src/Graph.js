@@ -7,6 +7,28 @@ class Graph {
      */
     this.nodes = {}; // Adjacency List
   }
+
+  addNode(value) {
+    this.nodes[value] = [];
+  }
+
+  removeNode(value) {
+    delete this.nodes[value];
+  }
+
+  contains(value) {
+    if (this.nodes[value]) return true;
+    return false;
+  }
+
+  addEdge(value1, value2) {
+    if (this.nodes[value1] && this.nodes[value2]) {
+      this.nodes[value1].push(value2);
+      this.nodes[value2].push(value1);
+    } else {
+      return "Invalid node value";
+    }
+  }
 }
 
 /*
@@ -17,3 +39,4 @@ class Graph {
 |X                               X
 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 */
+module.exports = Graph;

@@ -16,7 +16,7 @@ const people = [
 ];
 let hashTable;
 
-describe("hashTable", () => {
+describe.only("hashTable", () => {
   beforeEach(() => {
     hashTable = new HashTable();
   });
@@ -44,8 +44,10 @@ describe("hashTable", () => {
   });
 
   it("should return boolean when indicating value removed", () => {
+    hashTable.insert("kkkkkk", "EEEEEE");
     hashTable.insert("Grace", "Hopper");
     expect(hashTable.remove("Grace")).to.be.true;
+    hashTable.insert("gggg", "EEEEEE");
     expect(hashTable.remove("Grace")).to.be.false;
   });
 
@@ -73,7 +75,7 @@ describe("hashTable", () => {
   Uncomment by removing the 'x'.
   */
 
-  it("should double in size when needed", () => {
+  xit("should double in size when needed", () => {
     _.each(people, (person) => {
       const firstName = person[0];
       const lastName = person[1];
@@ -82,7 +84,7 @@ describe("hashTable", () => {
     expect(hashTable.limit).to.equal(16);
   });
 
-  it("should halve in size when needed", () => {
+  xit("should halve in size when needed", () => {
     _.each(people, (person) => {
       const firstName = person[0];
       const lastName = person[1];
